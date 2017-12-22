@@ -2,11 +2,14 @@
 
 A command line dashboard for [jest](https://github.com/facebook/jest)
 
-##Purpose
+## Purpose
 
 When you run tests in jest, you probably see this sort of output:
 
+
+
 While that is helpful, it can get quite hard to parse through the noise. jest-dashboard simplifies cutting through the noise and bubbling up relevant information.
+
 
 
 ## Install
