@@ -2,7 +2,7 @@
   "name": "jest-dashboard",
   "version": "0.1.0",
   "description": "Command-line dashboard for jest",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "jest jest-dashboard/src/ --config jest.config.json",
     "test-debug": "node --inspect-brk ./node_modules/.bin/jest -i jest-dashboard/src --config jest.config.json",
