@@ -1,0 +1,33 @@
+{
+  "cacheDirectory": "./cache",
+  "roots": [
+    "src"
+  ],
+  "testEnvironment": "node",
+  "verbose": false,
+  "silent": true,
+  "bail": false,
+  "collectCoverage": false,
+  "coverageDirectory": "<rootDir>/coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx}",
+    "!<rootDir>/node_modules/",
+    "!**/node_modules/",
+    "!<rootDir>/dist/"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/dist/",
+    "/bundle/",
+    "jest.test.results.js"
+  ],
+  "modulePathIgnorePatterns": [
+    "/node_modules/",
+    "/dist/",
+    "/bundle/",
+    "<rootDir>/bundle/*"
+  ],
+  "reporters": [
+    ["<rootDir>/src/reporter/jest.dashboard.reporter.js", {"banana": "yes", "pineapple": "no"}]
+  ]
+}

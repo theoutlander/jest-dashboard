@@ -1,0 +1,33 @@
+{
+  "name": "jest-dashboard",
+  "version": "0.1.0",
+  "description": "Command-line dashboard for jest",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest jest-dashboard/src/ --config jest.config.json",
+    "test-debug": "node --inspect-brk ./node_modules/.bin/jest -i jest-dashboard/src --config jest.config.json",
+    "test-watch": "jest jest-dashboard/src/ --config jest.config.json --watch --notify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theoutlander/jest-dashboard.git"
+  },
+  "keywords": [
+    "jest",
+    "dashboard",
+    "enzyme",
+    "nodejs",
+    "javascript"
+  ],
+  "author": "Nick Karnik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theoutlander/jest-dashboard/issues"
+  },
+  "homepage": "https://github.com/theoutlander/jest-dashboard#readme",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.8.5",
+    "jest": "^22.0.3"
+  }
+}
