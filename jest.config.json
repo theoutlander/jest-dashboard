@@ -28,6 +28,6 @@
     "<rootDir>/bundle/*"
   ],
   "reporters": [
-    ["<rootDir>/src/reporter/jest.dashboard.reporter.js"]
+    "<rootDir>/src/reporter/jest.dashboard.reporter.js"
   ]
 }
