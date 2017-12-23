@@ -1,29 +1,71 @@
 let path = require('path')
 let contrib = require('blessed-contrib')
 let colors = require('colors')
+const EventEmitter = require('events');
 
 let JestBaseResults = require('../../base/jest.base.results')
 
 class JestTestResults extends JestBaseResults {
   create () {
-    return this.grid.set(...this.coordinates, contrib.table, {
+
+    this.eventEmitter = new EventEmitter();
+
+    let control = this.grid.set(...this.coordinates, contrib.table, {
       keys: true,
       label: 'Test Files',
       columnSpacing: 2,
       columnWidth: [30, 7, 7, 7],
-      interactive: true
+      interactive: true,
+      // fg: 'red',
+      selectedFg: 'black',
+      selectedBg: 'white'
+    })
 
-      //
-      // scrollable: true,
-      // scrollbar: {
-      //   bg: 'blue'
-      // },
-      // align: 'left',
-      // draggable: false,
-      // focused: true,
-      // mouse: false,
-      // input: true,
-      // alwaysScroll: true
+// , width: '30%'
+// , height: '30%'
+// , border: {type: "line", fg: "cyan"}
+// , columnSpacing: 10 //in chars
+// , columnWidth: [16, 12, 12] /*in chars*/
+
+    // control.rows.on('select', () => {
+    //
+    //   debugger
+    // })
+
+    control.screen.key(['up', 'down'], (ch, key) => {
+        let list = control.children[1]
+        let length = list.items.length
+        let offset = list.childOffset
+
+        // b.getText().split(/\s/g).filter(a=>a!=='')
+        if (key.name === 'up') {
+          if (offset > 0) {
+            offset--
+          }
+        }
+        else {
+          if (offset < (length - 1)) {
+            offset++
+          }
+        }
+
+        let item = list.items[offset]
+        let contentArr = item.getText().split(/\s/g).filter(a => a !== '')
+
+        let file = contentArr[0]
+
+      this.eventEmitter.emit('select', file)
+
+        // console.log(contentArr[0])
+      }
+    )
+
+    return control
+  }
+
+  onItemSelect(cb) {
+    this.eventEmitter.on('select', (item) => {
+      cb(item)
     })
   }
 

@@ -53,6 +53,10 @@ class JestDashboard {
     this.runCountResults = new RunCountResults(this.grid, [0, 0, 4, 2])
     this.errorLogs = new ErrorLogResults(this.grid, [0, 5, 10, 6])
 
+    this.testResults.onItemSelect(item => {
+      // debugger
+      // console.log(item)
+    })
     // this.testResults = new JestTestResults(this.__createTestPanel())
     // this.testResults = new JestTestResults(this.__createTestPanel())
     this.testResults.control.focus()
@@ -95,6 +99,11 @@ class JestDashboard {
   }
 
   __setKeyboardEvents () {
+    this.screen.key(['r'], () => {
+      // Doesn't force a rerender....????!
+      this.screen.render()
+    })
+
     this.screen.key(['escape', 'q', 'C-c'], function (ch, key) {
       return process.exit(0)
     })
