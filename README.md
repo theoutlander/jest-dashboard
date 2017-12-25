@@ -2,7 +2,9 @@
 
 A command line dashboard for [jest](https://github.com/facebook/jest)
 
-[![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard)
+[![CircleCI](https://circleci.com/gh/theoutlander/jest-dashboard.svg?style=svg)](https://circleci.com/gh/theoutlander/jest-dashboard)
+
+[![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard) 
 
 ## Purpose
 
