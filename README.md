@@ -1,3 +1,7 @@
+[![NPM](https://nodei.co/npm/jest-dashboard.png)](https://npmjs.org/package/jest-dashboard)
+
+---
+
 # jest-dashboard
 
 A command line dashboard for [jest](https://github.com/facebook/jest)
@@ -38,7 +42,3 @@ jest --config <jest.config.json>
 
 Press **Escape** to quit
 
----
-
-
-[![NPM](https://nodei.co/npm/jest-dashboard.png)](https://npmjs.org/package/jest-dashboard)
