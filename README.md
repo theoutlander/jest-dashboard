@@ -4,7 +4,6 @@ A command line dashboard for [jest](https://github.com/facebook/jest)
 
 [![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard)
 
-
 ## Purpose
 
 When you run tests in jest, you probably see this sort of output:
@@ -15,6 +14,7 @@ While that is helpful, it can get quite hard to parse through the noise. The **j
 
 ![image](https://user-images.githubusercontent.com/749084/34291630-f81399a6-e6b1-11e7-8497-a232694827bb.png)
 
+https://david-dm.org/theoutlander/jest-dashboard.svg
 
 ## Install
 
