@@ -5,8 +5,11 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "jest jest-dashboard/src/ --config jest.config.json",
+    "test-dashboard": "npm test -- --reporters '<rootDir>/src/reporter/jest.dashboard.reporter.js'",
     "test-debug": "node --inspect-brk ./node_modules/.bin/jest -i jest-dashboard/src --config jest.config.json",
-    "test-watch": "jest jest-dashboard/src/ --config jest.config.json --watch --notify"
+    "test-debug-dashboard": "npm run test-debug -- --reporters '<rootDir>/src/reporter/jest.dashboard.reporter.js'",
+    "test-watch": "jest jest-dashboard/src/ --config jest.config.json --watch --notify",
+    "test-watch-dashboard": "npm run test-watch -- --reporters '<rootDir>/src/reporter/jest.dashboard.reporter.js'"
   },
   "repository": {
     "type": "git",

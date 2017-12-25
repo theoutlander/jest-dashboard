@@ -58,18 +58,20 @@ class JestDashboard {
     this.testMessages = new TestMessagesPanel(this.grid, [0, 5, 10, 6])
 
     this.testResults.onItemSelect(item => {
+      debugger
       this.testMessages.clear()
 
-      item.console.forEach(log => {
-        let msg =`${log.origin}\n${log.message}`
+      if (item.console) {
+        item.console.forEach(log => {
+          let msg = `${log.origin}\n${log.message}`
 
-        if (log.type === 'error')
-        {
-          msg = colors.red(msg)
-        }
+          if (log.type === 'error') {
+            msg = colors.red(msg)
+          }
 
-        this.log(msg)
-      })
+          this.log(msg)
+        })
+      }
 
       if (item.failureMessage) {
         // let msg = strip(item.failureMessage).split('\n')

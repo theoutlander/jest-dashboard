@@ -15,7 +15,7 @@ describe('Jest Base Results', () => {
     // await expect(Promise.reject(() => {new base()})).toThrowError('Create Not Implemented')
 
     //let instance = new base()
-    expect(12).toBeNull()
+    // expect(12).toBeNull()
     // await expect(Promise.rejescts(instance.creates)).toThrow('Create Not Implemented')
   })
 })
