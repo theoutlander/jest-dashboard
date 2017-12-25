@@ -1,8 +1,9 @@
-[![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard)
-
 # jest-dashboard
 
 A command line dashboard for [jest](https://github.com/facebook/jest)
+
+[![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard)
+
 
 ## Purpose
 
