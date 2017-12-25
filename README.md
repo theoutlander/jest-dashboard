@@ -1,6 +1,4 @@
-[![NPM](https://nodei.co/npm/jest-dashboard.png)](https://npmjs.org/package/jest-dashboard)
-
----
+[![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard)
 
 # jest-dashboard
 
@@ -20,6 +18,9 @@ While that is helpful, it can get quite hard to parse through the noise. The **j
 ## Install
 
 ```npm install -D jest-dashboard```
+
+[![NPM](https://nodei.co/npm/jest-dashboard.png)](https://npmjs.org/package/jest-dashboard)
+
 
 ## Setup
 
