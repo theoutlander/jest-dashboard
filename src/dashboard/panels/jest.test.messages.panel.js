@@ -14,8 +14,12 @@ class TestMessagesPanel extends JestBaseResults {
     return this.log
   }
 
+  clear() {
+    this.log.content = ''
+  }
+
   handleData () {
-    this.log.content += this.data
+    this.log.content += this.data + '\n'
     return false
   }
 }

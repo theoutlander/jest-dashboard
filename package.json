@@ -28,6 +28,7 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.8.5",
+    "colors": "^1.1.2",
     "jest": "^22.0.3",
     "strip-color": "^0.1.0"
   }

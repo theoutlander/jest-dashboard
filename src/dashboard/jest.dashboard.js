@@ -2,7 +2,8 @@
 
 let blessed = require('blessed')
 let contrib = require('blessed-contrib')
-var strip = require('strip-color')
+let strip = require('strip-color')
+let colors = require('colors/safe')
 
 let JestTestResults = require('./panels/jest.test.results')
 let PassFailResults = require('./panels/jest.pass.fail.results')
@@ -57,14 +58,25 @@ class JestDashboard {
     this.testMessages = new TestMessagesPanel(this.grid, [0, 5, 10, 6])
 
     this.testResults.onItemSelect(item => {
+      this.testMessages.clear()
+
       item.console.forEach(log => {
-        this.log(log.message)
+        let msg =`${log.origin}\n${log.message}`
+
+        if (log.type === 'error')
+        {
+          msg = colors.red(msg)
+        }
+
+        this.log(msg)
       })
 
       if (item.failureMessage) {
-        let msg = strip(item.failureMessage).split('\n')
+        // let msg = strip(item.failureMessage).split('\n')
+        let msg = item.failureMessage.split('\n')
 
         msg.forEach(m => {
+          // this.log(m === '' ? '\n\n' : m)
           this.log(m)
         })
       }
