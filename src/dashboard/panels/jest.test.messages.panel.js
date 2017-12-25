@@ -1,9 +1,9 @@
 let JestBaseResults = require('../../base/jest.base.results')
-let contrib = require('blessed-contrib')
+let blessed = require('blessed')
 
-class ErrorLogResults extends JestBaseResults {
+class TestMessagesPanel extends JestBaseResults {
   create () {
-    this.log = this.grid.set(...this.coordinates, contrib.log, {
+    this.log = this.grid.set(...this.coordinates, blessed.box, {
       fg: 'green',
       selectedFg: 'green',
       label: 'Logs',
@@ -15,9 +15,9 @@ class ErrorLogResults extends JestBaseResults {
   }
 
   handleData () {
-    this.log.log(this.data)
+    this.log.content += this.data
     return false
   }
 }
 
-module.exports = ErrorLogResults
+module.exports = TestMessagesPanel

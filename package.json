@@ -1,6 +1,6 @@
 {
   "name": "jest-dashboard",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Command-line dashboard for jest",
   "main": "./src/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.8.5",
-    "jest": "^22.0.3"
+    "jest": "^22.0.3",
+    "strip-color": "^0.1.0"
   }
 }

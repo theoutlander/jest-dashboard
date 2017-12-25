@@ -19,7 +19,14 @@ While that is helpful, it can get quite hard to parse through the noise. The **j
 
 ## Setup
 
-To use jest-dashboard, you need to modify your **jest configuration** file with the following:
+You can use jest-dashboard in two ways:
+
+1). Specify the jest-dashboard reporter as a command line parameter
+
+```bash
+jest --reporters jest-dashboard
+```
+2). Modify your **jest configuration** file with the following:
 
 ```json
 "reporters": ["jest-dashboard"]

@@ -1,14 +1,14 @@
 let path = require('path')
 let contrib = require('blessed-contrib')
 let colors = require('colors')
-const EventEmitter = require('events');
+const EventEmitter = require('events')
 
 let JestBaseResults = require('../../base/jest.base.results')
 
 class JestTestResults extends JestBaseResults {
   create () {
 
-    this.eventEmitter = new EventEmitter();
+    this.eventEmitter = new EventEmitter()
 
     let control = this.grid.set(...this.coordinates, contrib.table, {
       keys: true,
@@ -54,8 +54,14 @@ class JestTestResults extends JestBaseResults {
 
         let file = contentArr[0]
 
-      this.eventEmitter.emit('select', file)
+        let result = this.data.testResults.filter(t => t.testFilePath.endsWith(file))[0]
 
+        if (result) {
+          this.eventEmitter.emit('select', result)
+        }
+        else {
+          debugger
+        }
         // console.log(contentArr[0])
       }
     )
@@ -63,7 +69,7 @@ class JestTestResults extends JestBaseResults {
     return control
   }
 
-  onItemSelect(cb) {
+  onItemSelect (cb) {
     this.eventEmitter.on('select', (item) => {
       cb(item)
     })

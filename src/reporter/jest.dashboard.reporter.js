@@ -47,12 +47,12 @@ class JestDashboardReporter {
       // return this.handleExecError(testResult);
     }
 
-    if (testResult.console) {
-      testResult.console.forEach((log, origin, type) => {
-        this.dashboard.log(`${origin}:\n\t${log}\n\n`, type)
-        // this.dashboard.log(colorizeLog(`${origin}:\n\t${message}\n\n`, type)),
-      })
-    }
+    // if (testResult.console) {
+    //   testResult.console.forEach((log, origin, type) => {
+    //     this.dashboard.log(`${origin}:\n\t${log}\n\n`, type)
+    //     // this.dashboard.log(colorizeLog(`${origin}:\n\t${message}\n\n`, type)),
+    //   })
+    // }
 
     this.dashboard.setData(aggregatedResult)
   }

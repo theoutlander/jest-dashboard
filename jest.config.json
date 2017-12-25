@@ -5,7 +5,7 @@
   ],
   "testEnvironment": "node",
   "verbose": false,
-  "silent": true,
+  "silent": false,
   "bail": false,
   "collectCoverage": false,
   "coverageDirectory": "<rootDir>/coverage",
