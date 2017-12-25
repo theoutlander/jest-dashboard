@@ -37,3 +37,8 @@ jest --reporters jest-dashboard
 jest --config <jest.config.json>
 
 Press **Escape** to quit
+
+---
+
+
+[![NPM](https://nodei.co/npm/jest-dashboard.png)](https://npmjs.org/package/jest-dashboard)
