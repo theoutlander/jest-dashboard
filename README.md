@@ -2,8 +2,13 @@
 
 A command line dashboard for [jest](https://github.com/facebook/jest)
 
-[![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard)
-
+<p>
+<img src="https://img.shields.io/circleci/project/github/theoutlander/jest-dashboard.svg">
+<img src="https://badge.fury.io/js/jest-dashboard.svg">
+<img src="https://img.shields.io/npm/dt/jest-dashboard.svg">
+<img src="https://img.shields.io/npm/l/jest-dashboard.svg">
+</p>
+  
 ## Purpose
 
 When you run tests in jest, you probably see this sort of output:
