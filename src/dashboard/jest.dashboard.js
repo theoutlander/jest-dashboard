@@ -58,7 +58,6 @@ class JestDashboard {
     this.testMessages = new TestMessagesPanel(this.grid, [0, 5, 10, 6])
 
     this.testResults.onItemSelect(item => {
-      debugger
       this.testMessages.clear()
 
       if (item.console) {
