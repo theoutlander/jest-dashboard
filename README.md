@@ -6,9 +6,10 @@ A command line dashboard for [jest](https://github.com/facebook/jest)
 <img src="https://img.shields.io/circleci/project/github/theoutlander/jest-dashboard.svg">
 <img src="https://badge.fury.io/js/jest-dashboard.svg">
 <img src="https://img.shields.io/npm/dt/jest-dashboard.svg">
+<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
 <img src="https://img.shields.io/npm/l/jest-dashboard.svg">
 </p>
-  
+
 ## Purpose
 
 When you run tests in jest, you probably see this sort of output:
