@@ -28,24 +28,30 @@ While that is helpful, it can get quite hard to parse through the noise. The **j
 [![NPM](https://nodei.co/npm/jest-dashboard.png)](https://npmjs.org/package/jest-dashboard)
 
 
-## Setup
+## Usage
 
-You can use jest-dashboard in two ways:
+You can use jest-dashboard in **two ways**:
 
 1). Specify the jest-dashboard reporter as a command line parameter
 
-```bash
+```
 jest --reporters jest-dashboard
 ```
+
+OR
+
+
 2). Modify your **jest configuration** file with the following:
 
-```json
+```
 "reporters": ["jest-dashboard"]
 ```
 
-## Usage
+and run:
 
+```
 jest --config <jest.config.json>
+```
 
 Press **Escape** to quit
 
