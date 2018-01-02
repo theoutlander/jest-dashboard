@@ -1,6 +1,16 @@
 # jest-dashboard
 
+[![Join the chat at https://gitter.im/theoutlander/jest-dashboard](https://badges.gitter.im/theoutlander/jest-dashboard.svg)](https://gitter.im/theoutlander/jest-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A command line dashboard for [jest](https://github.com/facebook/jest)
+
+<p>
+<img src="https://img.shields.io/circleci/project/github/theoutlander/jest-dashboard.svg">
+<img src="https://badge.fury.io/js/jest-dashboard.svg">
+<img src="https://img.shields.io/npm/dt/jest-dashboard.svg">
+<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
+<img src="https://img.shields.io/npm/l/jest-dashboard.svg">
+</p>
 
 ## Purpose
 
@@ -17,16 +27,46 @@ While that is helpful, it can get quite hard to parse through the noise. The **j
 
 ```npm install -D jest-dashboard```
 
-## Setup
+[![NPM](https://nodei.co/npm/jest-dashboard.png)](https://npmjs.org/package/jest-dashboard)
 
-To use jest-dashboard, you need to modify your **jest configuration** file with the following:
-
-```json
-"reporters": ["jest-dashboard"]
-```
 
 ## Usage
 
+You can use jest-dashboard in **two ways**:
+
+1). Specify the jest-dashboard reporter as a command line parameter
+
+```
+jest --reporters jest-dashboard
+```
+
+OR
+
+
+2). Modify your **jest configuration** file with the following:
+
+```
+"reporters": ["jest-dashboard"]
+```
+
+and run:
+
+```
 jest --config <jest.config.json>
+```
 
 Press **Escape** to quit
+
+
+## Contribution
+
+This is a work-in-progress and we would like your help. Please consider contributing to this project on one of the following:
+
+- Dashboard Improvements
+- Integration with Mocha
+- Test Cases
+- Examples
+
+## License
+
+MIT License
