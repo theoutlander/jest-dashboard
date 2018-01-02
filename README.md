@@ -3,14 +3,11 @@
 A command line dashboard for [jest](https://github.com/facebook/jest)
 
 [![Join the chat at https://gitter.im/theoutlander/jest-dashboard](https://badges.gitter.im/theoutlander/jest-dashboard.svg)](https://gitter.im/theoutlander/jest-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-<p>
-<img src="https://img.shields.io/circleci/project/github/theoutlander/jest-dashboard.svg">
-<img src="https://badge.fury.io/js/jest-dashboard.svg">
-<img src="https://img.shields.io/npm/dt/jest-dashboard.svg">
-<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
-<img src="https://img.shields.io/npm/l/jest-dashboard.svg">
-</p>
+[![CircleCI](https://img.shields.io/circleci/project/github/theoutlander/jest-dashboard.svg)](https://circleci.com/gh/theoutlander/jest-dashboard)
+[![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard)
+[![npm](https://img.shields.io/npm/dt/jest-dashboard.svg)](https://www.npmjs.com/package/jest-dashboard)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/theoutlander/jest-dashboard/blob/master/LICENSE)
 
 ## Purpose
 
