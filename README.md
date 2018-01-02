@@ -55,3 +55,16 @@ jest --config <jest.config.json>
 
 Press **Escape** to quit
 
+
+## Contribution
+
+This is a work-in-progress and we would like your help. Please consider contributing to this project on one of the following:
+
+- Dashboard Improvements
+- Integration with Mocha
+- Test Cases
+- Examples
+
+## License
+
+MIT License
