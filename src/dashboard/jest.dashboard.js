@@ -2,11 +2,14 @@
 
 let blessed = require('blessed')
 let contrib = require('blessed-contrib')
+let strip = require('strip-color')
+let colors = require('colors/safe')
 
 let JestTestResults = require('./panels/jest.test.results')
 let PassFailResults = require('./panels/jest.pass.fail.results')
 let RunCountResults = require('./panels/jest.run.count.results')
 let ErrorLogResults = require('./panels/jest.error.log.results')
+let TestMessagesPanel = require('./panels/jest.test.messages.panel')
 
 // function hook_stream (stream, callback) {
 //   var old_write = stream.write
@@ -51,10 +54,35 @@ class JestDashboard {
     this.testResults = new JestTestResults(this.grid, [0, 2, 10, 3])
     this.passFailResults = new PassFailResults(this.grid, [4, 0, 6, 2])
     this.runCountResults = new RunCountResults(this.grid, [0, 0, 4, 2])
-    this.errorLogs = new ErrorLogResults(this.grid, [0, 5, 10, 6])
+    // this.errorLogs = new ErrorLogResults(this.grid, [5, 5, 10, 6])
+    this.testMessages = new TestMessagesPanel(this.grid, [0, 5, 10, 6])
 
-    // this.testResults = new JestTestResults(this.__createTestPanel())
-    // this.testResults = new JestTestResults(this.__createTestPanel())
+    this.testResults.onItemSelect(item => {
+      this.testMessages.clear()
+
+      if (item.console) {
+        item.console.forEach(log => {
+          let msg = `${log.origin}\n${log.message}`
+
+          if (log.type === 'error') {
+            msg = colors.red(msg)
+          }
+
+          this.log(msg)
+        })
+      }
+
+      if (item.failureMessage) {
+        // let msg = strip(item.failureMessage).split('\n')
+        let msg = item.failureMessage.split('\n')
+
+        msg.forEach(m => {
+          // this.log(m === '' ? '\n\n' : m)
+          this.log(m)
+        })
+      }
+    })
+
     this.testResults.control.focus()
   }
 
@@ -65,16 +93,13 @@ class JestDashboard {
   }
 
   log (msg) {
-    this.errorLogs.setData(msg)
+    //this.errorLogs.setData(msg)
+    this.testMessages.setData(msg)
   }
 
   render () {
     this.screen.render()
   }
-
-  // __renderBox (title = 'what', content, coord = [0, 0, 8, 4]) {
-  //   this.grid.set(...coord, blessed.box, {content: 'My Box', title: title})
-  // }
 
   __createGrid () {
     return new contrib.grid({rows: 12, cols: 12, screen: this.screen})
@@ -95,6 +120,24 @@ class JestDashboard {
   }
 
   __setKeyboardEvents () {
+    this.screen.key(['r'], () => {
+
+      // Doesn't force a rerender....????!
+      this.screen.render()
+    })
+
+    this.screen.key(['tab'], (ch, key) => {
+      let item = this.screen.focused.type
+      switch (item) {
+        case 'list':
+          this.testMessages.control.focus()
+          break
+        case 'box':
+          this.testResults.control.focus()
+          break
+      }
+    })
+
     this.screen.key(['escape', 'q', 'C-c'], function (ch, key) {
       return process.exit(0)
     })

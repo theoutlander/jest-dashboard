@@ -6,6 +6,7 @@ describe('Jest Base Results', () => {
 
     let instance = new base()
 
+    console.log("Starting to validate content")
     expect(instance).not.toBeNull()
 
     expect(base.prototype.create).toBeCalled()
@@ -14,7 +15,7 @@ describe('Jest Base Results', () => {
     // await expect(Promise.reject(() => {new base()})).toThrowError('Create Not Implemented')
 
     //let instance = new base()
-
+    // expect(12).toBeNull()
     // await expect(Promise.rejescts(instance.creates)).toThrow('Create Not Implemented')
   })
 })

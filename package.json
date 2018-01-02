@@ -1,12 +1,15 @@
 {
   "name": "jest-dashboard",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "description": "Command-line dashboard for jest",
   "main": "./src/index.js",
   "scripts": {
     "test": "jest jest-dashboard/src/ --config jest.config.json",
+    "test-dashboard": "npm test -- --reporters '<rootDir>/src/reporter/jest.dashboard.reporter.js'",
     "test-debug": "node --inspect-brk ./node_modules/.bin/jest -i jest-dashboard/src --config jest.config.json",
-    "test-watch": "jest jest-dashboard/src/ --config jest.config.json --watch --notify"
+    "test-debug-dashboard": "npm run test-debug -- --reporters '<rootDir>/src/reporter/jest.dashboard.reporter.js'",
+    "test-watch": "jest jest-dashboard/src/ --config jest.config.json --watch --notify",
+    "test-watch-dashboard": "npm run test-watch -- --reporters '<rootDir>/src/reporter/jest.dashboard.reporter.js'"
   },
   "repository": {
     "type": "git",
@@ -28,6 +31,8 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.8.5",
-    "jest": "^22.0.3"
+    "colors": "^1.1.2",
+    "jest": "^22.0.3",
+    "strip-color": "^0.1.0"
   }
 }

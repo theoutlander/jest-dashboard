@@ -6,7 +6,9 @@ class ErrorLogResults extends JestBaseResults {
     this.log = this.grid.set(...this.coordinates, contrib.log, {
       fg: 'green',
       selectedFg: 'green',
-      label: 'Logs'
+      label: 'Logs',
+      keys: true,
+      interactive: true
     })
 
     return this.log

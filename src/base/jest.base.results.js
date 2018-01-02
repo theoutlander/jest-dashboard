@@ -9,11 +9,7 @@ class JestBaseResults {
     this.data = data
     this.controlData = this.handleData()
 
-    if (this.controlData) {
-      this.control.setData(this.controlData)
-    }
-
-    this.update()
+    this.update(this.controlData)
   }
 
   getPassedTestSuites () {
@@ -36,7 +32,11 @@ class JestBaseResults {
     throw new Error('HandleData Not Implemented')
   }
 
-  update () {
+  update (controlData) {
+    if (controlData) {
+      this.control.setData(controlData)
+    }
+
     this.control.screen.render()
   }
 }

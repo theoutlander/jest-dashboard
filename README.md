@@ -1,8 +1,8 @@
 # jest-dashboard
 
-[![Join the chat at https://gitter.im/theoutlander/jest-dashboard](https://badges.gitter.im/theoutlander/jest-dashboard.svg)](https://gitter.im/theoutlander/jest-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 A command line dashboard for [jest](https://github.com/facebook/jest)
+
+[![Join the chat at https://gitter.im/theoutlander/jest-dashboard](https://badges.gitter.im/theoutlander/jest-dashboard.svg)](https://gitter.im/theoutlander/jest-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <p>
 <img src="https://img.shields.io/circleci/project/github/theoutlander/jest-dashboard.svg">
@@ -41,6 +41,7 @@ jest --reporters jest-dashboard
 ```
 
 OR
+
 
 
 2). Modify your **jest configuration** file with the following:

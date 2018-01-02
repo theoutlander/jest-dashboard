@@ -30,29 +30,30 @@ class JestDashboardReporter {
       this.dashboard.log(testResult.testExecError)
     }
 
-    if (testResult.failureMessage) {
-      let messages = testResult.testResults.map(t => {
-        return t.failureMessages
-      }).reduce((arr, curr) => {
-        if (curr.length <= 0) {
-          return arr
-        }
+    // if (testResult.failureMessage) {
+    //   let messages = testResult.testResults.map(t => {
+    //     return t.failureMessages
+    //   }).reduce((arr, curr) => {
+    //     if (curr.length <= 0) {
+    //       return arr
+    //     }
+    //
+    //     return arr.concat(curr)
+    //   }, [])
+    //
+    //   this.dashboard.log(aggregatedResult.testResults[0].failureMessage )
+    //   messages.forEach(m => {
+    //     this.dashboard.log(m)
+    //   })
+    //   // return this.handleExecError(testResult);
+    // }
 
-        return arr.concat(curr)
-      }, [])
-
-      messages.forEach(m => {
-        this.dashboard.log(m)
-      })
-      // return this.handleExecError(testResult);
-    }
-
-    if (testResult.console) {
-      testResult.console.forEach((log, origin, type) => {
-        this.dashboard.log(`${origin}:\n\t${log}\n\n`, type)
-        // this.dashboard.log(colorizeLog(`${origin}:\n\t${message}\n\n`, type)),
-      })
-    }
+    // if (testResult.console) {
+    //   testResult.console.forEach((log, origin, type) => {
+    //     this.dashboard.log(`${origin}:\n\t${log}\n\n`, type)
+    //     // this.dashboard.log(colorizeLog(`${origin}:\n\t${message}\n\n`, type)),
+    //   })
+    // }
 
     this.dashboard.setData(aggregatedResult)
   }
