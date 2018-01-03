@@ -6,6 +6,7 @@ A command line dashboard for [jest](https://github.com/facebook/jest)
 [![CircleCI](https://img.shields.io/circleci/project/github/theoutlander/jest-dashboard.svg)](https://circleci.com/gh/theoutlander/jest-dashboard)
 [![npm version](https://badge.fury.io/js/jest-dashboard.svg)](https://badge.fury.io/js/jest-dashboard)
 [![npm](https://img.shields.io/npm/dt/jest-dashboard.svg)](https://www.npmjs.com/package/jest-dashboard)
+[![NSP Status](https://nodesecurity.io/orgs/theoutlander/projects/8322a881-b9be-4c3a-b1d8-27e2a57db9cd/badge)](https://nodesecurity.io/orgs/theoutlander/projects/8322a881-b9be-4c3a-b1d8-27e2a57db9cd)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/theoutlander/jest-dashboard/blob/master/LICENSE)
 
