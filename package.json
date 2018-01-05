@@ -1,6 +1,6 @@
 {
   "name": "jest-dashboard",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "description": "Command-line dashboard for jest",
   "main": "./src/index.js",
   "scripts": {

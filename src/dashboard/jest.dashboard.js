@@ -83,7 +83,7 @@ class JestDashboard {
       }
     })
 
-    this.testResults.control.focus()
+    this.testMessages.control.focus()
   }
 
   setData (aggregatedResult) {
@@ -102,7 +102,17 @@ class JestDashboard {
   }
 
   __createGrid () {
-    return new contrib.grid({rows: 12, cols: 12, screen: this.screen})
+    return new contrib.grid({
+      rows: 12,
+      cols: 12,
+      screen: this.screen,
+      style: {
+        bg: 'red',
+        border: {
+          fg: 'blue'
+        }
+      }
+    })
   }
 
   __createScreen () {
@@ -128,12 +138,21 @@ class JestDashboard {
 
     this.screen.key(['tab'], (ch, key) => {
       let item = this.screen.focused.type
+
+      // We can refine this by comparing the control label
+      // That way it can be more dynamic
+      // Based on an attribute, we can automatically cycle through all focusable components
+
+      //this.testMessages.control._label
+      //this.testMessages.control.options.label
       switch (item) {
         case 'list':
-          this.testMessages.control.focus()
+          this.testResults.unfocus()
+          this.testMessages.focus()
           break
         case 'box':
-          this.testResults.control.focus()
+          this.testMessages.unfocus()
+          this.testResults.focus()
           break
       }
     })
