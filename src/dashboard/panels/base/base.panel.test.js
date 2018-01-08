@@ -1,12 +1,13 @@
-describe('Jest Base Results', () => {
+describe('Base Panel', () => {
   test('Loads', async () => {
-    let base = require('./jest.base.results')
+    expect.assertions(3)
+    let base = require('./base.panel')
 
     base.prototype.create = jest.fn()
 
     let instance = new base()
 
-    console.log("Starting to validate content")
+    console.log('Starting to validate content')
     expect(instance).not.toBeNull()
 
     expect(base.prototype.create).toBeCalled()
@@ -19,14 +20,15 @@ describe('Jest Base Results', () => {
     // await expect(Promise.rejescts(instance.creates)).toThrow('Create Not Implemented')
   })
 
-  test('Loads Again', async ()=> {
-    let base = require('./jest.base.results')
+  test('Loads Again', async () => {
+    expect.assertions(4)
+    let base = require('./base.panel')
 
     base.prototype.create = jest.fn()
 
     let instance = new base()
 
-    console.log("Starting to validate content a second time")
+    console.log('Starting to validate content a second time')
     expect(instance).not.toBeNull()
 
     expect(base.prototype.create).toBeCalled()

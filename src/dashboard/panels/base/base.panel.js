@@ -1,15 +1,15 @@
-class JestBaseResults {
+class BasePanel {
   constructor (grid, coordinates) {
     this.grid = grid
     this.coordinates = coordinates
+    this.view = 'file'
 
     this.control = this.create()
     this.setStyle()
 
     if (this.control) {
       this.control.on('focus', function () {
-        debugger
-
+        // debugger
       })
     }
   }
@@ -20,6 +20,12 @@ class JestBaseResults {
       this.control.style.border.bg = null
       this.control._label.style.fg = 'blue'
       this.control._label.style.bg = null
+    }
+  }
+
+  setLabel (name) {
+    if (this.control && name) {
+      this.control.setLabel(name)
     }
   }
 
@@ -66,24 +72,75 @@ class JestBaseResults {
     this.focusStyle()
     this.control.focus()
     this.update()
+    this.focused = true
   }
 
   unfocus () {
     if (this.control.backup) {
       this.unfocusStyle()
     }
+    this.focused = false
   }
 
-  getPassedTestSuites () {
+  // // Suites
+  // getPassedTestSuites () {
+  //   return this.data.numPassedTestSuites
+  // }
+  //
+  // getFailedTestSuites () {
+  //   return this.data.numFailedTestSuites
+  // }
+  //
+  // getTotalTestSuites () {
+  //   return this.data.numTotalTestSuites
+  // }
+
+  // __getFileStats () {
+  //   debugger
+  //   let results = this.data.testResults.reduce((obj, curr) => {
+  //     let pass = curr.numFailingTests == 0 ? 1 : 0
+  //     let fail = curr.numFailingTests > 0 ? 1 : 0
+  //
+  //     if (!obj['pass']) {
+  //       obj = {
+  //         pass: pass,
+  //         fail: fail
+  //       }
+  //     } else {
+  //       obj['pass'] = obj['pass'] + pass
+  //       obj['fail'] = obj['fail'] + fail
+  //     }
+  //
+  //     return obj
+  //   }, {})
+  //
+  //   return results
+  // }
+
+  // Files
+  getPassedTestFiles () {
     return this.data.numPassedTestSuites
   }
 
-  getFailedTestSuites () {
+  getFailedTestFiles () {
     return this.data.numFailedTestSuites
   }
 
-  getTotalTestSuites () {
-    return this.data.numTotalTestSuites
+  getTotalTestFiles () {
+    return this.data.numPassedTestSuites + this.data.numFailedTestSuites
+  }
+
+  // Tests
+  getPassedTests () {
+    return this.data.numPassedTests
+  }
+
+  getFailedTests () {
+    return this.data.numFailedTests
+  }
+
+  getTotalTests () {
+    return this.data.numTotalTests
   }
 
   create () {
@@ -92,6 +149,21 @@ class JestBaseResults {
 
   handleData () {
     throw new Error('HandleData Not Implemented')
+  }
+
+  setView (view) {
+    this.view = view
+    // this.data = data
+    this.controlData = this.handleData()
+    if (this.controlData) {
+      this.setLabel(this.controlData.label)
+    }
+
+    this.update(this.controlData)
+    this.onSetView()
+  }
+
+  onSetView() {
   }
 
   update (controlData) {
@@ -103,4 +175,4 @@ class JestBaseResults {
   }
 }
 
-module.exports = JestBaseResults
+module.exports = BasePanel

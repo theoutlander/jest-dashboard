@@ -1,7 +1,7 @@
-let JestBaseResults = require('../../base/jest.base.results')
+let BasePanel = require('./base/base.panel')
 let contrib = require('blessed-contrib')
 
-class ErrorLogResults extends JestBaseResults {
+class ErrorLogPanel extends BasePanel {
   create () {
     this.log = this.grid.set(...this.coordinates, contrib.log, {
       fg: 'green',
@@ -20,4 +20,4 @@ class ErrorLogResults extends JestBaseResults {
   }
 }
 
-module.exports = ErrorLogResults
+module.exports = ErrorLogPanel

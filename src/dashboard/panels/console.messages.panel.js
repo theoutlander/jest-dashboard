@@ -1,7 +1,7 @@
-let JestBaseResults = require('../../base/jest.base.results')
+let BasePanel = require('./base/base.panel')
 let blessed = require('blessed')
 
-class TestMessagesPanel extends JestBaseResults {
+class CondsoleMessagesPanel extends BasePanel {
   create () {
     this.log = this.grid.set(...this.coordinates, blessed.box, {
       fg: 'green',
@@ -24,4 +24,4 @@ class TestMessagesPanel extends JestBaseResults {
   }
 }
 
-module.exports = TestMessagesPanel
+module.exports = CondsoleMessagesPanel

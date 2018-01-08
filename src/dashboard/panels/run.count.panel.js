@@ -1,7 +1,7 @@
-let JestBaseResults = require('../../base/jest.base.results')
+let BasePanel = require('./base/base.panel')
 let contrib = require('blessed-contrib')
 
-class RunCountResults extends JestBaseResults {
+class RunCountPanel extends BasePanel {
   create () {
     let guage = this.grid.set(...this.coordinates, contrib.gauge, {
       label: 'Total Run',
@@ -14,10 +14,18 @@ class RunCountResults extends JestBaseResults {
   }
 
   handleData () {
-    let passed = this.getPassedTestSuites()
-    let failed = this.getFailedTestSuites()
-    let total = this.getTotalTestSuites()
-    // // let pending = total - passed - failed
+    let passed, failed, total
+
+    if (this.view == 'file') {
+      passed = this.getPassedTestFiles()
+      failed = this.getFailedTestFiles()
+      total = this.getTotalTestFiles()
+    }
+    else if (this.view == 'test') {
+      passed = this.getPassedTests()
+      failed = this.getFailedTests()
+      total = this.getTotalTests()
+    }
 
     let passedPercentage = Math.round((1 - (total - passed) / total) * 100)
     let failedPercentage = Math.round((1 - (total - failed) / total) * 100)
@@ -39,6 +47,15 @@ class RunCountResults extends JestBaseResults {
 
     return data
 
+    if (this.view === 'file') {
+      this.control.options.columnWidth = [60, 10, 10, 10]
+      return TestResultsProcessor.GetDataByTestFiles(this.data)
+    }
+    else if (this.view === 'test') {
+      this.control.options.columnWidth = [70, 10, 10]
+      return TestResultsProcessor.GetDataByTestCases(this.data)
+    }
+
     // return [
     //   {percent: passedPercentage, label: 'Passed', 'color': 'green'},
     //   {percent: failedPercentage, label: 'Failed', 'color': 'red'}
@@ -56,4 +73,4 @@ class RunCountResults extends JestBaseResults {
   }
 }
 
-module.exports = RunCountResults
+module.exports = RunCountPanel

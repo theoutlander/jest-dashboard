@@ -2,14 +2,12 @@
 
 let blessed = require('blessed')
 let contrib = require('blessed-contrib')
-let strip = require('strip-color')
 let colors = require('colors/safe')
 
-let JestTestResults = require('./panels/jest.test.results')
-let PassFailResults = require('./panels/jest.pass.fail.results')
-let RunCountResults = require('./panels/jest.run.count.results')
-let ErrorLogResults = require('./panels/jest.error.log.results')
-let TestMessagesPanel = require('./panels/jest.test.messages.panel')
+let TestResultsPanel = require('./panels/test.results.panel')
+let PassFailPanel = require('./panels/pass.fail.panel')
+let RunCountPanel = require('./panels/run.count.panel')
+let ConsoleMessagesPanel = require('./panels/console.messages.panel')
 
 // function hook_stream (stream, callback) {
 //   var old_write = stream.write
@@ -28,6 +26,9 @@ let TestMessagesPanel = require('./panels/jest.test.messages.panel')
 
 class JestDashboard {
   constructor (data) {
+    this.states = [0, 1]
+    this.state = 0
+
     this.data = data
     this.screen = this.__createScreen()
     this.grid = this.__createGrid()
@@ -46,20 +47,19 @@ class JestDashboard {
     // var access = fs.createWriteStream('/var/log/node/api.access.log')
     // process.stdout.write = process.stderr.write = access.write.bind(access)
 
-    this.__createPanels()
+    this.panels = this.__createPanels()
     this.__setKeyboardEvents()
   }
 
   __createPanels () {
-    this.testResults = new JestTestResults(this.grid, [0, 2, 10, 3])
-    this.passFailResults = new PassFailResults(this.grid, [4, 0, 6, 2])
-    this.runCountResults = new RunCountResults(this.grid, [0, 0, 4, 2])
+    this.testResultsPanel = new TestResultsPanel(this.grid, [0, 2, 10, 5])
+    this.passFailPanel = new PassFailPanel(this.grid, [4, 0, 6, 2])
+    this.runCountPanel = new RunCountPanel(this.grid, [0, 0, 4, 2])
     // this.errorLogs = new ErrorLogResults(this.grid, [5, 5, 10, 6])
-    this.testMessages = new TestMessagesPanel(this.grid, [0, 5, 10, 6])
+    this.consoleMessagesPanel = new ConsoleMessagesPanel(this.grid, [0, 7, 10, 5])
 
-    this.testResults.onItemSelect(item => {
-      this.testMessages.clear()
-
+    this.testResultsPanel.onItemSelect(item => {
+      this.consoleMessagesPanel.clear()
       if (item.console) {
         item.console.forEach(log => {
           let msg = `${log.origin}\n${log.message}`
@@ -81,20 +81,33 @@ class JestDashboard {
           this.log(m)
         })
       }
+
+      if (item.failureMessages) {
+        item.failureMessages.forEach(msg => {
+          this.log(msg)
+        })
+      }
     })
 
-    this.testMessages.control.focus()
+    this.testResultsPanel.focus()
+
+    return [
+      this.testResultsPanel,
+      this.passFailPanel,
+      this.runCountPanel,
+      this.consoleMessagesPanel
+    ]
   }
 
   setData (aggregatedResult) {
-    this.testResults.setData(aggregatedResult)
-    this.passFailResults.setData(aggregatedResult)
-    this.runCountResults.setData(aggregatedResult)
+    this.testResultsPanel.setData(aggregatedResult)
+    this.passFailPanel.setData(aggregatedResult)
+    this.runCountPanel.setData(aggregatedResult)
   }
 
   log (msg) {
     //this.errorLogs.setData(msg)
-    this.testMessages.setData(msg)
+    this.consoleMessagesPanel.setData(msg)
   }
 
   render () {
@@ -131,7 +144,6 @@ class JestDashboard {
 
   __setKeyboardEvents () {
     this.screen.key(['r'], () => {
-
       // Doesn't force a rerender....????!
       this.screen.render()
     })
@@ -147,12 +159,12 @@ class JestDashboard {
       //this.testMessages.control.options.label
       switch (item) {
         case 'list':
-          this.testResults.unfocus()
-          this.testMessages.focus()
+          this.testResultsPanel.unfocus()
+          this.consoleMessagesPanel.focus()
           break
         case 'box':
-          this.testMessages.unfocus()
-          this.testResults.focus()
+          this.consoleMessagesPanel.unfocus()
+          this.testResultsPanel.focus()
           break
       }
     })
@@ -160,159 +172,32 @@ class JestDashboard {
     this.screen.key(['escape', 'q', 'C-c'], function (ch, key) {
       return process.exit(0)
     })
+
+    this.screen.key(['t'], (ch, key) => {
+      this.state++
+      if (this.state >= this.states.length) {
+        this.state = 0
+      }
+
+      let view = 'none'
+
+      switch (this.state) {
+        case 0:
+          view = 'file'
+          break
+        // case 1:
+        //   view='suite'
+        //   break
+        case 1:
+          view = 'test'
+          break
+      }
+
+      this.panels.forEach(p => {
+        p.setView(view)
+      })
+    })
   }
-
-  // __createListTable () {
-  //   this.__testList = this.grid.set(0, 0, 8, 8, blessed.listtable, {
-  //     scrollable: true,
-  //     scrollbar: {
-  //       bg: 'blue'
-  //     },
-  //     align: 'left',
-  //     draggable: false,
-  //     focused: true,
-  //     mouse: false,
-  //     input: true,
-  //     alwaysScroll: true
-  //   })
-  //
-  //   return this.__testList
-  // }
-
-  // __renderTree () {
-  //   // var tree = contrib.tree({fg: 'green'})
-  //
-  //   let tree = this.grid.set(0,0,3,3, contrib.tree, {fg: 'green'})
-  //   //allow control the table with the keyboard
-  //   tree.focus()
-  //
-  //   tree.on('select', function (node) {
-  //     if (node.myCustomProperty) {
-  //       console.log(node.myCustomProperty)
-  //     }
-  //     console.log(node.name)
-  //   })
-  //
-  //   // you can specify a name property at root level to display root
-  //   tree.setData(
-  //     {
-  //       extended: true
-  //       , children:
-  //         {
-  //           'Fruit':
-  //             {
-  //               children:
-  //                 {
-  //                   'Banana': {}
-  //                   , 'Apple': {}
-  //                   , 'Cherry': {}
-  //                   , 'Exotics': {
-  //                     children:
-  //                       {
-  //                         'Mango': {}
-  //                         , 'Papaya': {}
-  //                         , 'Kiwi': {name: 'Kiwi (not the bird!)', myCustomProperty: 'hairy fruit'}
-  //                       }
-  //                   }
-  //                   , 'Pear': {}
-  //                 }
-  //             }
-  //           , 'Vegetables':
-  //             {
-  //               children:
-  //                 {
-  //                   'Peas': {}
-  //                   , 'Lettuce': {}
-  //                   , 'Pepper': {}
-  //                 }
-  //             }
-  //         }
-  //     })
-  // }
-
-  // __renderLineChart () {
-  //   let line = contrib.line(
-  //     {
-  //       style:
-  //         {
-  //           line: 'yellow',
-  //           text: 'green',
-  //           baseline: 'black'
-  //         },
-  //       xLabelPadding: 3,
-  //       xPadding: 5,
-  //       label: 'Title'
-  //     })
-  //
-  //   let data = {
-  //     x: ['t1', 't2', 't3', 't4'],
-  //     y: [5, 1, 7, 5]
-  //   }
-  //   this.screen.append(line) // must append before setting data
-  //   line.setData([data])
-  // }
-
-  // __renderBox2 (title, location) {
-  //   this.logger = contrib.log(
-  //     {
-  //       fg: 'green'
-  //       , selectedFg: 'green'
-  //       , label: 'Server Log'
-  //     })
-  //   this.screen.append(this.logger)
-  //   this.logger.log('Starting log')
-  // }
-
-  // __renderTerminal () {
-  //   let self = this
-  //   // let topleft = blessed.terminal({
-  //   //   parent: this.screen,
-  //   //   cursor: 'line',
-  //   //   cursorBlink: true,
-  //   //   screenKeys: false,
-  //   //   label: ' multiplex.js ',
-  //   //   left: 0,
-  //   //   top: 0,
-  //   //   width: '50%',
-  //   //   height: '50%',
-  //   //   border: 'line',
-  //   //   style: {
-  //   //     fg: 'default',
-  //   //     bg: 'default',
-  //   //     focus: {
-  //   //       border: {
-  //   //         fg: 'green'
-  //   //       }
-  //   //     }
-  //   //   }
-  //   // })
-  //
-  //   let topright = blessed.terminal({
-  //     parent: this.screen,
-  //     cursor: 'block',
-  //     cursorBlink: true,
-  //     screenKeys: false,
-  //     label: ' multiplex.js ',
-  //     left: '50%-1',
-  //     top: 0,
-  //     width: '50%+1',
-  //     height: '50%',
-  //     border: 'line',
-  //     style: {
-  //       fg: 'red',
-  //       bg: 'black',
-  //       focus: {
-  //         border: {
-  //           fg: 'green'
-  //         }
-  //       }
-  //     }
-  //   })
-  //
-  //   topright.pty.on('data', function (data) {
-  //     self.screen.log(JSON.stringify(data))
-  //   })
-  // }
 }
 
 module.exports = JestDashboard
