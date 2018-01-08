@@ -18,7 +18,7 @@ When you run tests in jest, you probably see this sort of output:
 
 While that is helpful, it can get quite hard to parse through the noise. The **jest-dashboard** simplifies this.
 
-![image](https://user-images.githubusercontent.com/749084/34291630-f81399a6-e6b1-11e7-8497-a232694827bb.png)
+<img width="1613" alt="screenshot 2018-01-07 21 34 45" src="https://user-images.githubusercontent.com/749084/34659897-e07bd45e-f3f2-11e7-9a05-70dbfeb6077f.png">
 
 
 ## Install
