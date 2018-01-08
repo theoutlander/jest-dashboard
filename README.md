@@ -41,7 +41,6 @@ jest --reporters jest-dashboard
 OR
 
 
-
 2). Modify your **jest configuration** file with the following:
 
 ```
@@ -56,6 +55,18 @@ jest --config <jest.config.json>
 
 Press **Escape** to quit
 
+
+## Hot Keys
+
+```
+<TAB> - Switch focus between Table View and Log View
+
+<ESC> - Quit Dashboard
+
+    t - Toggle table view to display Test Files or Test Cases
+    
+    q - Quit Dashboard
+```
 
 ## Contribution
 
