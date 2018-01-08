@@ -21,7 +21,7 @@ describe('Base Panel', () => {
   })
 
   test('Loads Again', async () => {
-    expect.assertions(4)
+    expect.assertions(3)
     let base = require('./base.panel')
 
     base.prototype.create = jest.fn()
